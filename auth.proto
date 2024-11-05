@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package auth;
+
+option java_multiple_files = true;
+
+service AuthService {
+  rpc Auth(AuthRequest) returns (AuthResponse);
+}
+
+message AuthRequest {
+}
+
+message AuthResponse {
+  string token = 1;
+}

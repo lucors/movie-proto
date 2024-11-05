@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package movie;
+
+option java_multiple_files = true;
+
+message Movie {
+  int32 id = 1;
+  string title = 2;
+  string desc = 3;
+  string genre = 4;
+  int32 release_year = 5;
+}
+
+service MovieService {
+  rpc CreateMovie (CreateMovieRequest) returns (Movie);
+  rpc GetMovie (GetMovieRequest) returns (Movie);
+  rpc GetAllMovies (MovieFilter) returns (GetAllMoviesResponse);
+  rpc UpdateMovie (UpdateMovieRequest) returns (Movie);
+  rpc DeleteMovie (DeleteMovieRequest) returns (DeleteMovieResponse);
+}
+
+message CreateMovieRequest {
+  string title = 1;
+  string desc = 2;
+  string genre = 3;
+  int32 release_year = 4;
+}
+
+message MovieFilter {
+  repeated int32 ids = 1;
+  string genre = 2;
+  int32 release_year = 3;
+}
+
+message GetMovieRequest {
+  int32 id = 1;
+}
+
+message GetAllMoviesResponse {
+  repeated Movie movies = 1;
+}
+
+message UpdateMovieRequest {
+  int32 id = 1;
+  string title = 2;
+  string desc = 3;
+  string genre = 4;
+  int32 release_year = 5;
+}
+
+message DeleteMovieRequest {
+  int32 id = 1;
+}
+
+message DeleteMovieResponse {
+  bool result = 1;
+}
